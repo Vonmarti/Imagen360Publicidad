@@ -1,0 +1,153 @@
+/* Catálogo de Viniles */
+.catalogo-section {
+  padding: 80px 0;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+.catalogo-section h1 {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 50px;
+  color: #333;
+}
+
+.galeria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.galeria-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  background-color: #fff;
+  cursor: pointer;
+  aspect-ratio: 1 / 1;
+}
+
+.galeria-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(255, 145, 0, 0.3);
+}
+
+.galeria-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.galeria-item:hover img {
+  transform: scale(1.1);
+}
+
+.galeria-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 145, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+.galeria-item:hover .galeria-overlay {
+  opacity: 1;
+}
+
+.galeria-overlay-text {
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.back-button {
+  display: inline-block;
+  margin: 30px 20px;
+  padding: 12px 30px;
+  background-color: #ff9100;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #ff7700;
+}
+
+@media (max-width: 768px) {
+  .galeria-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+  }
+
+  .catalogo-section h1 {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+}
+
+/* clicked item should not show hover effects or overlay */
+.galeria-item.no-hover:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.galeria-item.no-hover:hover img {
+  transform: none;
+}
+
+.galeria-item.no-hover .galeria-overlay {
+  opacity: 0 !important;
+}
+
+/* simple modal for enlarged image */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 80%;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #bbb;
+}
